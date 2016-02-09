@@ -6,7 +6,7 @@ require 'yaml'
 
 require 'require_all'
 
-module Mental
+module Tracker
   VERSION = '0.0.1'
 
   module_function
@@ -20,7 +20,7 @@ module Mental
 
   # Shamelessly stolen, then cleaned up a bit, from the [Rails project](https://github.com/rails/rails/blob/0450642c27af3af35b449208b21695fd55c30f90/railties/lib/rails/application.rb#L218-L231)
   def config_for name
-    yaml = Mental.root.join 'config', "#{ name }.yml"
+    yaml = Tracker.root.join 'config', "#{ name }.yml"
 
     unless yaml.exist?
       raise "Could not load configuration. No such file - #{ yaml }"
@@ -29,7 +29,7 @@ module Mental
     erb = ERB.new(yaml.read).result
     erbd_yaml = YAML.load erb
 
-    erbd_yaml[Mental.environment.to_s] || {}
+    erbd_yaml[Tracker.environment.to_s] || {}
   rescue YAML::SyntaxError => e
     raise "YAML syntax error occurred while parsing #{ yaml }. " \
       "Please note that YAML must be consistently indented using spaces. Tabs are not allowed. " \
@@ -37,7 +37,7 @@ module Mental
   end
 end
 
-Bundler.require :default, Mental.environment
+Bundler.require :default, Tracker.environment
 
 require_rel %w| config/initializers lib app |
 

@@ -1,0 +1,24 @@
+- content_for :header do
+  %h1.title Questionaires
+  %h2.subtitle= @title
+
+- content_for :body do
+  .section
+    .container
+      - @questionaires.each_slice(4) do |slice|
+        .columns
+          -slice.each do |questionaire|
+            .column.is-fourth
+              .card
+                .card-content
+                  .content
+                    %h5= questionaire.questionaire_template.name
+                    %p
+                      - if questionaire.completed
+                        %a{ href: '/questionaires/complete' }
+                          %span.tag.is-success Complete
+                      - else
+                        %a{ href: '/questionaires/incomplete' }
+                          %span.tag.is-danger Incomplete
+                    %p
+                      %small= questionaire.created_at.strftime('%F %r')

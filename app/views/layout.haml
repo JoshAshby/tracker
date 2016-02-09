@@ -32,11 +32,10 @@
 
       .hero-content
         .container
+          = yield_content :header
 
       .hero-footer
-        .tabs
-          .container
-            %ul
+        = bulma_flash
 
     - if content_for? :body
       = yield_content :body
@@ -55,8 +54,11 @@
             unless otherwise noted.
           %p
             Built with
-            %a{ href: "https://www.getlektor.com/" }
-              Lektor
+            %a{ href: "www.sinatrarb.com" }
+              Sinatra
+            ,
+            %a{ href: "https://facebook.github.io/react"}
+              React
             and
             %a{ href:"http://bulma.io/" }
               Bulma

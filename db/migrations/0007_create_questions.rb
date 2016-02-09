@@ -1,11 +1,13 @@
 Sequel.migration do
   change do
 
-    create_table :groups do
+    create_table :questions do
       primary_key :id
 
-      String :name, unique: true, index: true, null: false
-      column :user_ids, 'integer[]'
+      String :prompt, null: false
+      String :type, null: false
+
+      column :meta, 'jsonb'
 
       DateTime :created_at
       DateTime :updated_at

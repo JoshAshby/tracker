@@ -6,6 +6,8 @@ Sequel.migration do
       String :namespace, index: true
       String :name,      index: true, null: false
 
+      FalseClass :enabled, default: false
+
       DateTime :created_at
       DateTime :updated_at
     end

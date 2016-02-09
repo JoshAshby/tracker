@@ -15,19 +15,19 @@ class MultiIO
   end
 end
 
-FileUtils.mkdir_p Mental.root.join('logs')
+FileUtils.mkdir_p Tracker.root.join('logs')
 
-module Mental
+module Tracker
   module_function
   def logger
     @@logger_io ||= MultiIO.new(
-      File.open(Mental.root.join('logs', "git-blog.#{ Time.current.iso8601 }.log"), 'a'),
+      File.open(Tracker.root.join('logs', "git-blog.#{ Time.current.iso8601 }.log"), 'a'),
       STDOUT
     )
 
     @@logger ||= Logger.new(@@logger_io).tap do |logger|
       # setup our logger for everything...
-      if Mental.environment == :development
+      if Tracker.environment == :development
         logger.level = Logger::DEBUG
       else
         logger.level = Logger::INFO

@@ -12,6 +12,9 @@ class User < Sequel::Model
   preference :image,         default: ''
   preference :email,         default: ''
 
+  one_to_many :questionaires
+  one_to_many :responses
+
   def validate
     super
     validates_presence [ :username ]

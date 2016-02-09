@@ -7,7 +7,7 @@ CLEAN << 'coverage/'
 CLEAN << 'doc/'
 
 task :environment do
-  require_relative './mental'
+  require_relative './tracker'
 end
 
 namespace :db do
@@ -16,7 +16,7 @@ namespace :db do
     puts "Running migrations"
 
     Sequel.extension :migration
-    Sequel::Migrator.run DB, Mental.root.join('db', 'migrations')
+    Sequel::Migrator.run DB, Tracker.root.join('db', 'migrations')
   end
 
   desc "Seeds the database with the nescessary starting data"

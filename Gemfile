@@ -62,6 +62,7 @@ gem 'sequel_secure_password'
 # Frontend
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'sinatra-flash'
 gem 'haml'
 gem 'rabl'
 

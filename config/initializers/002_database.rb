@@ -3,8 +3,8 @@ require 'sequel'
 
 # Setup our SQL database for things
 DB = Sequel.connect(
-  **Mental.config_for(:database).symbolize_keys,
-  loggers: [ Logger.new(Mental.root.join('logs', 'sql.log')) ]
+  **Tracker.config_for(:database).symbolize_keys,
+  loggers: [ Logger.new(Tracker.root.join('logs', 'sql.log')) ]
 )
 
 DB.extension :pagination

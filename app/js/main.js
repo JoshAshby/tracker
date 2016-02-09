@@ -16,7 +16,7 @@ let components = [...document.getElementsByClassName('react-component')]
 components.forEach( elm => {
   let name = elm.dataset.react
 
-  window.AppData[name] = _.merge({}, elm.dataset)
+  window.AppData[name] = _.merge({}, elm.dataset.payload)
 
   ReactDOM.render(React.createElement(apps[name]), elm)
 })
