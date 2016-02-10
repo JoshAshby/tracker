@@ -13,6 +13,7 @@
 # bundler state
 /.bundle
 .gems/
+.byebug_history
 
 # minimal Rails specific artifacts
 db/*.sqlite3

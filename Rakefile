@@ -69,3 +69,4 @@ YARD::Rake::YardocTask.new do |t|
   # t.stats_options = ['--list-undoc']
 end
 
+load 'tasks/emoji.rake'

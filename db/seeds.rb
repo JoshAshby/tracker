@@ -41,39 +41,43 @@ end
 
 groups.values.each(&:save)
 
-template = QuestionaireTemplate.create name: "How ya doin?"
+template = QuestionnaireTemplate.create name: "Sample"
 
 question_response = [
   {
     prompt: 'Happy',
     type: :single_choice,
-    meta: {
-      choices: [
-        {
-          name: ':)',
-          value: '1'
-        },
-        {
-          name: ':|',
-          value: '0'
-        },
-        {
-          name: ':(',
-          value: '-1'
-        }
-      ]
-    },
-    response: '0'
+    emojify: true,
+    choices: [
+      ':grinning:',
+      ':neutral_face:',
+      ':worried:'
+    ],
+    responses: [':worried:']
+  },
+  {
+    prompt: 'okay',
+    type: :multiple_choice,
+    emojify: true,
+    choices: [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    responses: [1,2,3]
   },
   {
     prompt: 'Question?',
     type: :text,
-    response: 'meh'
+    emojify: false,
+    responses: ['meh :) :( :| just meh']
   }
 ]
 
 questions = question_response.map do |q|
-  question = Question.create prompt: q[:prompt], type: q[:type], meta: q[:meta]
+  question = Question.create prompt: q[:prompt], type: q[:type], emojify: q[:emojify], choices: q[:choices]
   template.add_question question
 
   question
@@ -81,8 +85,8 @@ end
 
 template.save
 
-questionaire = Questionaire.create user: users['ashby'], questionaire_template: template, completed: true
+questionnaire = Questionnaire.create user: users['ashby'], questionnaire_template: template, completed: true
 
 questions.each.with_index do |question, i|
-  Response.create user: users['ashby'], questionaire: questionaire, question: question, response: question_response[i][:response]
+  Response.create user: users['ashby'], questionnaire: questionnaire, question: question, responses: question_response[i][:responses]
 end

@@ -4,10 +4,12 @@ import configureStore from '../../store'
 import { Root } from './containers'
 import reducer from './reducers'
 
-export class TrackerApp extends Component {
+export class QuestionnaireTakerApp extends Component {
   @autobind
   componentWillMount() {
-    this.store = configureStore(reducer, {})
+    this.store = configureStore(reducer, {
+      questionnaire: window.AppData.QuestionnaireTakerApp.questionnaire
+    })
   }
 
   render() {

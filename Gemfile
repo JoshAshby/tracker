@@ -66,6 +66,9 @@ gem 'sinatra-flash'
 gem 'haml'
 gem 'rabl'
 
+gem 'gemoji'
+gem 'gemoji-parser'
+
 # Auth
 # gem 'omniauth'
 # gem 'omniauth-identity

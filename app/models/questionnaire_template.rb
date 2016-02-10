@@ -1,10 +1,10 @@
-class QuestionaireTemplate < Sequel::Model
+class QuestionnaireTemplate < Sequel::Model
   plugin :pg_array_associations
   plugin :validation_helpers
 
   pg_array_to_many :questions
 
-  one_to_many :questionaires
+  one_to_many :questionnaires
   one_to_many :responses
 
   def validate

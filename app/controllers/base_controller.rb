@@ -38,45 +38,8 @@ class BaseController < Sinatra::Base
     env["rack.errors"] = error_logger
   end
 
-  helpers Sinatra::ContentFor
+  helpers Sinatra::ContentFor, ElementsHelper, AuthenticationHelper
   register Sinatra::Flash
-
-  helpers do
-    def current_user
-      @current_user ||= User.find id: session[:user_id]
-    end
-
-    def logged_in?
-      current_user.present?
-    end
-
-    def bulma_flash key: :flash
-      return "" if flash(key).empty?
-      id = (key == :flash ? "flash" : "flash-#{key}")
-
-      messages = flash(key).collect do |type, msg|
-        className = case type
-        when :error
-          'is-danger'
-        when :warning
-          'is-warning'
-        when :success
-          'is-success'
-        when :info
-          'is-info'
-        else
-          ''
-        end
-        "<div class='notification #{ className } flash #{ type }'>#{ msg }</div>"
-      end
-
-      "<div class='container' id='#{ id }'>#{ messages.join }</div>"
-    end
-
-    def react_component name, data={}
-     "<div class='react-component' data-react='#{ name }' data-payload='#{ data.to_json }'></div>"
-    end
-  end
 
   def authenticate!
     unless logged_in?

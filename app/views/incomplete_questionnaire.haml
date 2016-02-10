@@ -1,0 +1,15 @@
+- content_for :react_router_url do
+  \/questionnaire/#{ @questionnaire.id }
+
+- content_for :header do
+  %h1.title #{ @questionnaire.questionnaire_template.name }
+  %h2.subtitle
+    Questionnaire for
+    = @questionnaire.created_at.strftime('%F %r')
+    %a{ href: '/questionnaires/incomplete' }
+      %span.tag.is-danger Incomplete
+
+- content_for :body do
+  .section
+    .container
+      = react_component 'QuestionnaireTakerApp', @questionnaire_data

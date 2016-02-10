@@ -1,0 +1,34 @@
+- content_for :header do
+  %h1.title #{ @questionnaire.questionnaire_template.name }
+  %h2.subtitle
+    Questionnaire from
+    = @questionnaire.created_at.strftime('%F %r')
+    %a{ href: '/questionnaires/complete' }
+      %span.tag.is-success Complete
+
+- content_for :body do
+  .section
+    .container
+      - @questionnaire.responses.each.with_index do |response, idx|
+        - unless idx == 0
+          %hr
+        %section
+          %p
+            %strong Prompt:
+            = response.question.prompt
+
+          - if response.question.type == 'text'
+            - if response.question.emojify
+              = emojify response.responses.join
+            - else
+              = response.responses.join
+
+          - if ['single_choice', 'multiple_choice'].include? response.question.type
+            %div.is-centered
+              - response.question.choices.each do |choice|
+                - active = response.responses.include? choice
+                %button.button.is-large.is-disabled{ class: [ ('is-info' if active), ('is-outlined' unless active) ] }
+                  - if response.question.emojify
+                    = emojify choice
+                  - else
+                    = choice
