@@ -1,6 +1,3 @@
-import { createConstants } from '../../../constants/utils'
+import { createConstants } from '../../../constants'
 
-export default createConstants(
- 'FETCH_QUESTIONNAIRE',
- 'UPDATE_RESPONSE'
-)
+export const UPDATE_RESPONSE = 'UPDATE_RESPONSE'

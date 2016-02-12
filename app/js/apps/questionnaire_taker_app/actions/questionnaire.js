@@ -1,4 +1,4 @@
-import { FETCH_QUESTIONNAIRE, UPDATE_RESPONSE } from '../constants'
+import { UPDATE_RESPONSE } from '../constants'
 
 import { AWAIT_MARKER } from 'redux-await'
 
@@ -14,7 +14,7 @@ import { AWAIT_MARKER } from 'redux-await'
 
 export function updateResponse(question_id, responses) {
   return {
-    type: UPDATE_REPSONSE,
+    type: UPDATE_RESPONSE,
     payload: {
       question_id,
       responses
