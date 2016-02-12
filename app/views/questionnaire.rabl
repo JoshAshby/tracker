@@ -20,10 +20,7 @@ end
 
 node :responses do |questionnaire|
   questionnaire.responses.inject({}) do |memo, response|
-    memo[response.question_id] = {
-      id:         response.id,
-      responses:  response.responses
-    }
+    memo[response.question_id] = response.responses
 
     memo
   end

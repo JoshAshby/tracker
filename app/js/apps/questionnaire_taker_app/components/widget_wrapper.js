@@ -3,9 +3,9 @@ import { TextWidget, SingleChoiceWidget, MultipleChoiceWidget } from './index'
 import { connect } from 'react-redux'
 
 const mapStoreToProps = (store, props) => ({
-  prompt:   store.questionnaire.questions[props.id].prompt,
-  type:     store.questionnaire.questions[props.id].type,
-  choices:  store.questionnaire.questions[props.id].choices,
+  prompt:    store.questionnaire.questions[props.id].prompt,
+  type:      store.questionnaire.questions[props.id].type,
+  choices:   store.questionnaire.questions[props.id].choices,
   responses: store.questionnaire.responses[props.id] || []
 })
 

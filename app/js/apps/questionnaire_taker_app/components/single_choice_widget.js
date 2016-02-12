@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch) => ({
 export class SingleChoiceWidget extends Component {
   @autobind
   handleClick(choice) {
-    console.log(choice)
     this.props.actions.updateResponse(this.props.id, [ choice ])
   }
 

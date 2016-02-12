@@ -1,9 +1,8 @@
 import { UPDATE_RESPONSE } from '../constants'
 
-import { createReducer } from '../../../reducers/utils'
+import { createReducer } from '../../../reducers'
 
-const initialState = {
-}
+const initialState = {}
 
 const rawReducer = createReducer(initialState, {
   [ UPDATE_RESPONSE ]: (state, payload) => {

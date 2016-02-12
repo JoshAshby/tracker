@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-import { WidgetWrapper } from '../components'
+import { WidgetWrapper, SubmitButton } from '../components'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -11,28 +11,18 @@ const mapStateToProps = (state) => ({
   questions_order: state.questionnaire.questions_order
 })
 
-@connect(mapStateToProps)
-export class IndexView extends Component {
-  render () {
-    let widgets = this.props.questions_order.map((id, idx) => {
-      let extra
+export const IndexView = connect(mapStateToProps)((props) => {
+  let widgets = props.questions_order.map((id, idx) => (
+    <div key={ id }>
+      <WidgetWrapper id={ id } />
+      <hr />
+    </div>
+  ))
 
-      if(idx != 0) {
-        extra = ( <hr /> )
-      }
-
-      return (
-        <div key={ id }>
-          { extra }
-          <WidgetWrapper id={ id } />
-        </div>
-      )
-    })
-
-    return (
-      <div>
-        { widgets }
-      </div>
-    )
-  }
-}
+  return (
+    <div>
+      { widgets }
+      <SubmitButton />
+    </div>
+  )
+})

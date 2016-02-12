@@ -45,7 +45,7 @@ class BaseController < Sinatra::Base
     unless logged_in?
       session[:return_path] = request.path
       flash[:error] = "You need to login to access that"
-      halt redirect(to('/'))
+      halt redirect(to('/login'))
     end
   end
 end

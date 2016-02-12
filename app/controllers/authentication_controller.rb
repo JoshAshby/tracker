@@ -1,5 +1,12 @@
 class AuthenticationController < BaseController
   # Session handling
+
+  get '/login' do
+    return haml :login unless logged_in?
+
+    redirect to('/')
+  end
+
   post '/login' do
     identity = params['username'].downcase
 

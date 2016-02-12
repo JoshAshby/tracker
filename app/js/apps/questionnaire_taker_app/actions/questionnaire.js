@@ -1,16 +1,18 @@
-import { UPDATE_RESPONSE } from '../constants'
+import { SUBMIT_QUESTIONNAIRE, UPDATE_RESPONSE } from '../constants'
 
 import { AWAIT_MARKER } from 'redux-await'
 
-//export function updateStory(url, data) {
-//  return {
-//    type: UPDATE_STORY,
-//    AWAIT_MARKER,
-//    payload: {
-//      response: window.API.patch(url).send({ story: data })
-//    }
-//  }
-//}
+import request from 'superagent'
+
+export function submitQuestionnaire(questionnaire) {
+  return {
+    type: SUBMIT_QUESTIONNAIRE,
+    AWAIT_MARKER,
+    payload: {
+      response: request.post( window.location.pathname ).withCredentials().send( { questionnaire: questionnaire } )
+    }
+  }
+}
 
 export function updateResponse(question_id, responses) {
   return {
