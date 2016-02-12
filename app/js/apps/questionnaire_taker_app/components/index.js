@@ -1,1 +1,5 @@
-export * from '~components'
+export * from '../../../components'
+export * from './widget_wrapper'
+export * from './text_widget'
+export * from './single_choice_widget'
+export * from './multiple_choice_widget'

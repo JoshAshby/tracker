@@ -1,4 +1,4 @@
-import { FETCH_QUESTIONNAIRE } from '../constants'
+import { FETCH_QUESTIONNAIRE, UPDATE_RESPONSE } from '../constants'
 
 import { createReducer } from '../../../reducers/utils'
 
@@ -11,15 +11,14 @@ const initialState = {
 const rawReducer = createReducer(initialState, {
   [ FETCH_QUESTIONNAIRE ]: (state, payload) => {
     return {
-      ...state,
-      meta: {
-        analytics: {
-          type: 'questionnaire.fetch',
-          payload: {
-            id: payload.id
-          }
-        }
-      }
+      ...state
+    }
+  },
+  [ UPDATE_RESPONSE ]: (state, payload) => {
+    state.questionnaire.responses[payload.question_id] = payload.responses
+
+    return {
+      ...state
     }
   }
 })

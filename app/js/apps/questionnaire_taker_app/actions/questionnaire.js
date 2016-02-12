@@ -1,16 +1,6 @@
-import { FETCH_QUESTIONNAIRE } from '../constants'
+import { FETCH_QUESTIONNAIRE, UPDATE_RESPONSE } from '../constants'
 
 import { AWAIT_MARKER } from 'redux-await'
-
-//export function fetchStory(url) {
-//  return {
-//    type: FETCH_STORY,
-//    AWAIT_MARKER,
-//    payload: {
-//      response: window.API.get(url)
-//    }
-//  }
-//}
 
 //export function updateStory(url, data) {
 //  return {
@@ -21,3 +11,21 @@ import { AWAIT_MARKER } from 'redux-await'
 //    }
 //  }
 //}
+
+export function updateResponse(question_id, responses) {
+  return {
+    type: UPDATE_REPSONSE,
+    payload: {
+      question_id,
+      responses
+    },
+    meta: {
+      analytics: {
+        type: 'questionnaire.update_response',
+        payload: {
+          question_id
+        }
+      }
+    }
+  }
+}

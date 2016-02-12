@@ -18,17 +18,13 @@
             = response.question.prompt
 
           - if response.question.type == 'text'
-            - if response.question.emojify
-              = emojify response.responses.join
-            - else
-              = response.responses.join
+            %div
+              %p
+                = response.responses.join
 
           - if ['single_choice', 'multiple_choice'].include? response.question.type
             %div.is-centered
               - response.question.choices.each do |choice|
                 - active = response.responses.include? choice
                 %button.button.is-large.is-disabled{ class: [ ('is-info' if active), ('is-outlined' unless active) ] }
-                  - if response.question.emojify
-                    = emojify choice
-                  - else
-                    = choice
+                  = choice

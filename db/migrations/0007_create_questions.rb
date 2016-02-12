@@ -7,8 +7,6 @@ Sequel.migration do
       String :prompt, null: false
       String :type, null: false
 
-      TrueClass :emojify, default: true
-
       column :choices, 'text[]'
       column :meta, 'jsonb'
 

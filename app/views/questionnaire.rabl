@@ -2,21 +2,29 @@ object @questionnaire
 
 attributes :id, :user_id
 
-node :questions do |questionnaire|
-  questionnaire.responses_dataset.eager(:question).all.map do |response|
-    question = response.question
+node :questions_order do |questionnaire|
+  questionnaire.questionnaire_template.questions.map(&:id)
+end
 
-    {
-      question: {
-        id: question.id,
-        prompt:    question.prompt,
-        choices:   question.choices,
-        emojify:   question.emojify
-      },
-      response: {
-        id: response.id,
-        responses: response.responses
-      }
+node :questions do |questionnaire|
+  questionnaire.questionnaire_template.questions.inject({}) do |memo, question|
+    memo[question.id] = {
+      prompt:  question.prompt,
+      type:    question.type,
+      choices: question.choices
     }
+
+    memo
+  end
+end
+
+node :responses do |questionnaire|
+  questionnaire.responses.inject({}) do |memo, response|
+    memo[response.question_id] = {
+      id:         response.id,
+      responses:  response.responses
+    }
+
+    memo
   end
 end
